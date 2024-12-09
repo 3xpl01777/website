@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- global site tag (gtag.js) - google analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-QJ9TR5T9S2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtage(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-QJ9TR5T9S2')
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3 X P L 0 1 7</title>
+    <link rel="shortcut icon" href="./img/favicon.png" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" media="screen" href="./css/index.css">
+</head>
+<body>
+    <div id="terminal">
+        <a id="before"></a>
+    </div>
+    <div id="command" onclick="$('texter').focus();">
+        <textarea type="text" id="texter" onkeyup="typeIt(this, event)" onkeydown="typeIt(this, event); moveIt(this.value.length, event)" onkeypress="typeIt(this, event);" autofocus></textarea>
+        <div id="liner">
+            <span id="typer"></span><b class="cursor" id="cursor"></b>
+        </div>
+    </div>
+    <!-- js -->
+     <script src="./js/caret.js"></script>
+     <script src="./js/commands.js"></script>
+     <script src="./js/index.js"></script>
+</body>
+</html>
