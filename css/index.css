@@ -1,0 +1,160 @@
+body {
+  width: 100%;
+  min-width: 550px;
+  min-height: 99%;
+  margin: 0;
+  padding: 15px 20px;
+  font-family: cursor, monospace;
+  font-size: 14px;
+  color: #f8f8f2;
+  background-color: #0e0f14;
+  overflow-x: hidden;
+}
+
+p {
+  display: block;
+  margin: 0;
+  line-height: 1.2em;
+  letter-spacing: 0.1em;
+  white-space: nowrap;
+  overflow: hidden;
+  animation: typing 0.5s steps(30, end);
+}
+
+b {
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+textarea {
+  left: -1000px;
+  position: absolute;
+}
+
+.no-animation {
+  animation: typing 0 steps(30, end);
+}
+
+.margin {
+  margin-left: 20px;
+}
+
+.index {
+  color: #282a36;
+}
+
+.color2 {
+  color: #7e86a1;
+}
+
+.color3 {
+  color: #bd93f9;
+}
+
+.command {
+  color: #50fa7b;
+  text-shadow: 0 0 5px #50fa7b;
+}
+
+.error {
+  color: #ff5555;
+}
+
+.white {
+  color: #fff;
+}
+
+.inherit,
+a {
+  color: #ffb86c;
+}
+a {
+  text-decoration: inherit;
+}
+a:hover {
+  background: #73abad;
+  color: #211830;
+}
+a:focus {
+  outline: 0;
+}
+
+.inherit2 {
+  color: #44475a;
+}
+
+::selection {
+  color: #282a36;
+  background-color: #44475a;
+}
+
+::-moz-selection {
+  color: #282a36;
+  background-color: #44475a;
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+/* cursor */
+
+.cursor {
+  display: inline-block;
+  position: relative;
+  width: 10px;
+  height: 1.5em;
+  max-width: 10px;
+  font-size: 12px;
+  color: #f8f8f2;
+  text-indent: -5px;
+  text-decoration: blink;
+  background-color: #f8f8f2;
+  opacity: 1;
+  transform: translateY(4px);
+  overflow: hidden;
+  animation: blinker 1s linear infinite;
+}
+
+#command {
+  height: 50px;
+  color: #f1fa8c;
+  cursor: text;
+}
+
+#liner {
+  margin-top: -2px;
+  line-height: 1.3em;
+  opacity: 0;
+  animation: show 0.5s ease forwards;
+  animation-delay: 1.2s;
+}
+
+#liner::before {
+  color: #ff79c6;
+  content: "user@3XPL017.xyz~$";
+}
+
+#liner.password::before {
+  content: "Password:";
+}
+
+@keyframes blinker {
+  50% {
+    opacity: 0;
+  }
+}
+
+@keyframes show {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
