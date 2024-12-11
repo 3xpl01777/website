@@ -1,5 +1,5 @@
 var before = document.getElementById("before");
-var liner = document.getElementById("liner");
+var liner = document.getElementById("cursor-line");
 var command = document.getElementById("typer");
 var textarea = document.getElementById("texter");
 var terminal = document.getElementById("terminal");
@@ -16,16 +16,7 @@ setTimeout(function () {
 
 window.addEventListener("keyup", enterKey);
 
-console.log(
-  "%cYou hacked my password!ðŸ˜ ",
-  "color: #50FA7B; font-weight: bold; font-size: 24px;"
-);
-console.log(
-  "%cPassword: '" + password + "' - I wonder what it does?ðŸ¤”",
-  "color: #F8F8F2"
-);
-
-//init
+// init
 textarea.value = "";
 command.innerHTML = textarea.value;
 
@@ -33,48 +24,71 @@ function enterKey(e) {
   if (e.keyCode == 181) {
     document.location.reload(true);
   }
+
   if (pw) {
     let et = "*";
     let w = textarea.value.length;
+
     command.innerHTML = et.repeat(w);
+
     if (textarea.value === password) {
       pwd = true;
     }
+
     if (pwd && e.keyCode == 13) {
-      loopLines(secret, "color2 margin", 120);
+      loopLines(secret, "info margin", 120);
+
       command.innerHTML = "";
       textarea.value = "";
       pwd = false;
       pw = false;
+
       liner.classList.remove("password");
     } else if (e.keyCode == 13) {
-      addLine("<br />Wrong password<br /><br />", "error", 0);
+      addLine(
+        "<br />Wrong password. Try again!<br /><br />",
+        "error margin",
+        0
+      );
+
       command.innerHTML = "";
       textarea.value = "";
       pw = false;
+
       liner.classList.remove("password");
     }
   } else {
     if (e.keyCode == 13) {
       commands.push(command.innerHTML);
       git = commands.length;
-      addLine("user@3XPL017.xyz~$ " + command.innerHTML, "no-animation", 0);
+
+      addLine(
+        "user@ynncstslv.io~$ " + command.innerHTML,
+        "no-animation tag",
+        0
+      );
+
       commander(command.innerHTML.toLowerCase());
+
       command.innerHTML = "";
       textarea.value = "";
     }
+
     if (e.keyCode == 38 && git != 0) {
       git -= 1;
       textarea.value = commands[git];
       command.innerHTML = textarea.value;
     }
+
     if (e.keyCode == 40 && git != commands.length) {
       git += 1;
+
       if (commands[git] === undefined) {
         textarea.value = "";
       } else {
         textarea.value = commands[git];
       }
+
       command.innerHTML = textarea.value;
     }
   }
@@ -82,103 +96,90 @@ function enterKey(e) {
 
 function commander(cmd) {
   switch (cmd.toLowerCase()) {
-    case "help":
-      loopLines(help, "color3 margin", 80);
-      break;
-    case "whois":
-      loopLines(whois, "color2 margin", 80);
-      break;
     case "whoami":
-      loopLines(whoami, "color2 margin", 80);
+      loopLines(whoami, "margin", 80);
       break;
-    case "video":
-      addLine("Opening YouTube...", "color2", 80);
-      newTab(youtube);
+    case "experience":
+      loopLines(experience, "margin", 80);
       break;
-    case "sudo":
-      addLine("<br />Oh no, you're not admin...<br /><br />", "inherit", 80);
-      setTimeout(function () {
-        window.open("https://www.youtube.com/watch?v=dQw4w9WgXcQ");
-      }, 1000);
+    case "portfolio":
+      loopLines(portfolio, "error margin", 80);
       break;
     case "social":
-      loopLines(social, "color2 margin", 80);
+      loopLines(social, "margin", 80);
+      break;
+    case "github":
+      addLine("<br />Opening GitHub...<br /><br />", "comment margin", 0);
+      newTab(github);
+      break;
+    case "linkedin":
+      addLine("<br />Opening LinkedIn...<br /><br />", "comment margin", 0);
+      newTab(linkedin);
+      break;
+    case "instagram":
+      addLine("<br />Opening Instagram...<br /><br />", "comment margin", 0);
+      newTab(instagram);
+      break;
+    case "contact":
+      addLine(
+        '<br />Opening mailto: <a href="mailto:yann@ynncstslv.io">yann@ynncstslv.io</a>...<br /><br />',
+        "comment margin",
+        80
+      );
+      newTab(email);
       break;
     case "secret":
       liner.classList.add("password");
       pw = true;
       break;
-    case "projects":
-      loopLines(projects, "color2 margin", 80);
+    case "sudo":
+      addLine(
+        "<br />Oh no, you're not admin...<br /><br />",
+        "error margin",
+        80
+      );
+      setTimeout(function () {
+        window.open("https://www.youtube.com/watch?v=h7oqtfgvT64");
+      }, 1000);
       break;
     case "password":
       addLine(
-        "<br /><span class=\"inherit\"> Lol! You're joking, right? You're gonna have to try harder than that!ðŸ˜‚</span><br /><br />",
-        "error",
+        "<br /><span class=\"info\"> Lol! You're joking, right? You're gonna have to try harder than that!ðŸ˜‚</span><br /><br />",
+        "margin",
         100
       );
       break;
     case "history":
-      addLine("<br>", "", 0);
-      loopLines(commands, "color2", 80);
-      addLine("<br>", "command", 80 * commands.length + 50);
+      addLine("<br />", "", 0);
+      loopLines(commands, "comment", 80);
+      addLine("<br />", "command", 80 * commands.length + 50);
       break;
-    case "email":
-      addLine(
-        '<br />Opening mailto: <a href="mailto:yann@ynncstslv.dev">yann@ynncstslv.dev</a>...<br /><br />',
-        "color2",
-        80
-      );
-      newTab(email);
       break;
     case "clear":
       setTimeout(function () {
         terminal.innerHTML = '<a id="before"></a>';
         before = document.getElementById("before");
+
+        loopLines(banner, "", 80);
+        textarea.focus();
       }, 1);
       break;
-    case "banner":
-      loopLines(banner, "", 80);
-      break;
-    // socials
-    case "youtube":
-      addLine("<br />Opening YouTube...<br /><br />", "color2", 80);
-      newTab(youtube);
-      break;
-    case "twitter":
-      addLine("<br />Opening Twitter...<br /><br />", "color2", 0);
-      newTab(twitter);
-      break;
-    case "linkedin":
-      addLine("<br />Opening LinkedIn...<br /><br />", "color2", 0);
-      newTab(linkedin);
-      break;
-    case "instagram":
-      addLine("<br />Opening Instagram...<br /><br />", "color2", 0);
-      newTab(instagram);
-      break;
-    case "github":
-      addLine("<br />Opening GitHub...<br /><br />", "color2", 0);
-      newTab(github);
+    case "help":
+      loopLines(help, "description margin", 80);
       break;
     default:
       addLine(
-        '<br /><span class="inherit2">Command not found. For a list of commands, type <span class="command">\'help\'</span>.</span><br /><br />',
-        "error",
+        '<br /><span class="comment">Command not found. For a list of available commands, type <span class="command">\'help\'</span>.</span><br /><br />',
+        "margin",
         100
       );
       break;
   }
 }
 
-function newTab(link) {
-  setTimeout(function () {
-    window.open(link, "_blank");
-  }, 500);
-}
-
 function addLine(text, style, time) {
   var t = "";
+
   for (let i = 0; i < text.length; i++) {
     if (text.charAt(i) == " " && text.charAt(i + 1) == " ") {
       t += "&nbsp;&nbsp;";
@@ -187,8 +188,10 @@ function addLine(text, style, time) {
       t += text.charAt(i);
     }
   }
+
   setTimeout(function () {
     var next = document.createElement("p");
+
     next.innerHTML = t;
     next.className = style;
 
@@ -203,3 +206,18 @@ function loopLines(name, style, time) {
     addLine(item, style, index * time);
   });
 }
+
+function newTab(link) {
+  setTimeout(function () {
+    window.open(link, "_blank");
+  }, 500);
+}
+
+console.log(
+  "%cYou hacked my password!ðŸ˜ ",
+  "color: #ff5555; font-weight: bold; font-size: 24px;"
+);
+console.log(
+  "%cPassword: '" + password + "' - I wonder what it does?ðŸ¤”",
+  "color: #50fa7b"
+);

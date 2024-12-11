@@ -1,24 +1,68 @@
-body {
-  width: 100%;
-  min-width: 550px;
-  min-height: 99%;
+/* variables */
+
+:root {
+  /* dimensions */
+  --container-width-sm: 94%;
+  --container-width-md: 90%;
+  --container-width-lg: 80%;
+  /* neutral colors */
+  --color-background: #0c0c0f;
+  --color-comment: #a6aab8;
+  --color-current: #3b3e4e;
+  --color-foreground: #f8f8f2;
+  /* colors */
+  --color-cyan: #8be9fd;
+  --color-green: #50fa7b;
+  --color-orange: #ffb86c;
+  --color-pink: #ff79c6;
+  --color-purple: #bd93f9;
+  --color-red: #ff5555;
+  --color-yellow: #f1fa8c;
+}
+
+/* reset */
+
+* {
   margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  border: 0;
+  outline: 0;
+  text-decoration: none;
+  list-style: none;
+}
+
+body {
+  width: var(--container-width-lg);
+  min-width: var(--container-width-lg);
+  min-height: 99%;
   padding: 15px 20px;
   font-family: cursor, monospace;
   font-size: 14px;
-  color: #f8f8f2;
-  background-color: #0e0f14;
+  color: var(--color-foreground);
+  background-color: var(--color-background);
   overflow-x: hidden;
 }
 
+/* start */
+
 p {
   display: block;
-  margin: 0;
-  line-height: 1.2em;
-  letter-spacing: 0.1em;
+  line-height: 1.3rem;
+  letter-spacing: 0.2rem;
   white-space: nowrap;
   overflow: hidden;
   animation: typing 0.5s steps(30, end);
+}
+
+a {
+  color: var(--color-cyan);
+  text-decoration: inherit;
+}
+
+a:hover {
+  color: var(--color-background);
+  background: var(--color-pink);
 }
 
 b {
@@ -27,79 +71,55 @@ b {
 }
 
 textarea {
-  left: -1000px;
   position: absolute;
-}
-
-.no-animation {
-  animation: typing 0 steps(30, end);
+  left: -1000px;
 }
 
 .margin {
   margin-left: 20px;
 }
 
-.index {
-  color: #282a36;
+.comment {
+  color: var(--color-comment);
 }
 
-.color2 {
-  color: #7e86a1;
+.tag {
+  color: var(--color-current);
 }
 
-.color3 {
-  color: #bd93f9;
+.foreground {
+  color: var(--color-foreground);
 }
 
 .command {
-  color: #50fa7b;
-  text-shadow: 0 0 5px #50fa7b;
+  color: var(--color-green);
+  text-shadow: 0 0 5px var(--color-green);
+}
+
+.info {
+  color: var(--color-yellow);
+}
+
+.description {
+  color: var(--color-purple);
 }
 
 .error {
-  color: #ff5555;
+  color: var(--color-red);
 }
 
-.white {
-  color: #fff;
-}
-
-.inherit,
-a {
-  color: #ffb86c;
-}
-a {
-  text-decoration: inherit;
-}
-a:hover {
-  background: #73abad;
-  color: #211830;
-}
-a:focus {
-  outline: 0;
-}
-
-.inherit2 {
-  color: #44475a;
+.no-animation {
+  animation: typing 0 steps(30, end);
 }
 
 ::selection {
-  color: #282a36;
-  background-color: #44475a;
+  color: var(--color-background);
+  background-color: var(--color-foreground);
 }
 
 ::-moz-selection {
-  color: #282a36;
-  background-color: #44475a;
-}
-
-@keyframes typing {
-  from {
-    width: 0;
-  }
-  to {
-    width: 100%;
-  }
+  color: var(--color-background);
+  background-color: var(--color-foreground);
 }
 
 /* cursor */
@@ -108,40 +128,57 @@ a:focus {
   display: inline-block;
   position: relative;
   width: 10px;
-  height: 1.5em;
+  height: 1.2rem;
   max-width: 10px;
   font-size: 12px;
-  color: #f8f8f2;
+  color: var(--color-foreground);
   text-indent: -5px;
   text-decoration: blink;
-  background-color: #f8f8f2;
+  background-color: var(--color-foreground);
   opacity: 1;
   transform: translateY(4px);
   overflow: hidden;
   animation: blinker 1s linear infinite;
 }
 
-#command {
+#cursor-command {
   height: 50px;
-  color: #f1fa8c;
+  color: var(--color-green);
   cursor: text;
 }
 
-#liner {
+#cursor-line {
   margin-top: -2px;
-  line-height: 1.3em;
+  line-height: 1.2rem;
   opacity: 0;
   animation: show 0.5s ease forwards;
   animation-delay: 1.2s;
 }
 
-#liner::before {
-  color: #ff79c6;
-  content: "user@3XPL017.xyz~$";
+#cursor-line::before {
+  content: "user@ynncstslv.io~$";
+  color: var(--color-pink);
 }
 
-#liner.password::before {
+#cursor-line.password::before {
   content: "Password:";
+  color: var(--color-red);
+}
+
+/* mobile */
+
+@media screen and (max-width: 440px) {
+}
+
+/* animations */
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
 }
 
 @keyframes blinker {
